@@ -4,7 +4,7 @@ import pymongo
 import datetime
 
 currDate = datetime.datetime.now()
-mongoClient = pymongo.MongoClient("mongodb://localhost:27017/")
+mongoClient = pymongo.MongoClient("mongodb://<edit>/")
 mydb = mongoClient["mlbdatabase"]
 playersCol = mydb["players"]
 playerList = []
@@ -37,13 +37,11 @@ for player in playerList:
 
     keyErrors = 0
     for date in range(startdate.year,currDate.year + 1):
-        print(date)
         url = "http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season="+str(str(date))+"&player_id="+str(str(player['playerid']))
         print(url)
         #
         try:
             response = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season="+str(date)+"&player_id="+str(player['playerid']))
-            #response = requests.get("http://lookup-service-prod.mlb.com/json/named.sport_hitting_tm.bam?league_list_id='mlb'&game_type='R'&season='2018'&player_id='669720'")
             hitting_dict = response.json()
             hitstruct = hitting_dict['sport_hitting_tm']['queryResults']['row']
             print(hitting_dict)
