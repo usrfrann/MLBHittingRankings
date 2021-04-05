@@ -5,7 +5,7 @@ import pymongo
 #Getting a list of all active teams
 #Store the list of all teams in a local database
 
-mongoClient = pymongo.MongoClient("mongodb://localhost:27017/")
+mongoClient = pymongo.MongoClient("mongodb://<edit>/")
 mydb = mongoClient["mlbdatabase"]
 mycol = mydb["teams"]
 
