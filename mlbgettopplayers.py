@@ -2,7 +2,7 @@ import json
 import pymongo
 import re
 
-mongoClient = pymongo.MongoClient("mongodb://localhost:27017/")
+mongoClient = pymongo.MongoClient("mongodb://<edit>/")
 mydb = mongoClient["mlbdatabase"]
 playersCol = mydb["players"]
 playerList = []
