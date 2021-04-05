@@ -1,7 +1,7 @@
 import requests
 import json
 import pymongo
-mongoClient = pymongo.MongoClient("mongodb://localhost:27017/")
+mongoClient = pymongo.MongoClient("mongodb://<edit>/")
 mydb = mongoClient["mlbdatabase"]
 playersCol = mydb["players"]
 teamCol = mydb["teams"]
@@ -34,11 +34,6 @@ for team in teamsList:
         continue
     player_dict = roster_dict["roster_40"]["queryResults"]["row"]
     for i in range(0,int(roster_dict["roster_40"]["queryResults"]["totalSize"])):
-        #position.append(player_dict[i]["position_txt"])
-        #name.append(player_dict[i]["name_display_first_last"])
-        #teamcode.append(player_dict[i]["team_code"])
-        #player_id.append(player_dict[i]["player_id"])
-        #teamid.append(player_dict[i]["team_id"])
         playerDictList.append({'position':player_dict[i]["position_txt"], 'name':player_dict[i]["name_display_first_last"], 'teamcode':player_dict[i]["team_code"], 'playerid': player_dict[i]["player_id"], 'teamid': player_dict[i]["team_id"],'teamidObj': objId['_id'], 'start_date':player_dict[i]["start_date"]})
 
-#x = playersCol.insert_many(playerDictList)
+x = playersCol.insert_many(playerDictList)
